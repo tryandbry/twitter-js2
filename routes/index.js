@@ -6,13 +6,19 @@ const tweetBank = require('../tweetBank');
 
 router.get('/',function(request, response) {
   let tweets = tweetBank.list();
-  response.render('index', { tweets: tweets } );
+  response.render('index', { tweets: tweets,
+                           showForm: true,
+                       default_name: "" } );
 });
 
 router.get('/users/:name', function(request,response){
   var name = request.params.name;
   var tweets = tweetBank.find( {name: name} );
-  response.render('index', { tweets: tweets } );
+  console.log("TWEETS FOUND:",tweets);
+  response.render('index', { tweets: tweets,
+                           showForm: true,
+                      default_tweet: "Hello World!",
+                       default_name: tweets[0].name } );
 });
 
 router.get('/tweets/:id', function(request,response){
@@ -21,6 +27,15 @@ router.get('/tweets/:id', function(request,response){
   //cast id to Number for find()
   var tweets = tweetBank.find( {id: +id} );
   response.render('index', { tweets: tweets } );
+});
+
+router.post('/tweets', function(request,response){
+  // body.name and body.text are defined by the INPUT forms in the DOM
+  var name = request.body.name;
+  var text = request.body.text;
+
+  tweetBank.add(name,text);
+  response.redirect('/');
 });
 
 module.exports = router;
