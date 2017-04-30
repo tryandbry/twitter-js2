@@ -16,18 +16,13 @@ app.use(function(request,response,next){
   next(); 
 });
 
-
 // routes
-app.get('/',function(request,response){
-  nunjucks.render('index.html',{ title:'An Example',
-                                people:[ { name: 'Gandalf' },
-                                         { name: 'Frodo' },
-                                         { name: 'Hermione' } ]
-                               },function(error, output){
-  console.log(output);
-  response.send(output);
-});
-});
+const routes = require('./routes');
+app.use('/', routes);
+
+// static content
+app.use(express.static('public'));
+
 
 app.listen(3000);
 
