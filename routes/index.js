@@ -15,4 +15,12 @@ router.get('/users/:name', function(request,response){
   response.render('index', { tweets: tweets } );
 });
 
+router.get('/tweets/:id', function(request,response){
+  var id = request.params.id;
+
+  //cast id to Number for find()
+  var tweets = tweetBank.find( {id: +id} );
+  response.render('index', { tweets: tweets } );
+});
+
 module.exports = router;

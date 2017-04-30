@@ -2,11 +2,13 @@ const _ = require('lodash');
 
 // private varable
 var data = [];
+var idcount = 0;
 
 // define methods
-function add (name, content) {
+function add (name, content, id) {
   data.push( {    name: name,
-               content: content } );
+               content: content,
+                    id: id } );
 }
 
 function list () {
@@ -38,6 +40,6 @@ const getFakeTweet = function() {
 };
 
 for (let i = 0; i < 10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
+  module.exports.add( getFakeName(), getFakeTweet(), idcount++ );
 }
 
