@@ -5,7 +5,7 @@ const router = express.Router();
 const tweetBank = require('../tweetBank');
 
 router.get('/',function(request, response) {
-  let tweets = tweetBank.list();
+  let tweets = tweetBank.list().reverse();
   response.render('index', { tweets: tweets,
                            showForm: true,
                        default_name: "" } );
@@ -13,7 +13,7 @@ router.get('/',function(request, response) {
 
 router.get('/users/:name', function(request,response){
   var name = request.params.name;
-  var tweets = tweetBank.find( {name: name} );
+  var tweets = tweetBank.find( {name: name} ).reverse();
   console.log("TWEETS FOUND:",tweets);
   response.render('index', { tweets: tweets,
                            showForm: true,
