@@ -8,7 +8,8 @@ var idcount = 0;
 function add (name, content, id) {
   data.push( {    name: name,
                content: content,
-                    id: id } );
+                    id: idcount } );
+  return idcount++;
 }
 
 function list () {

@@ -34,7 +34,8 @@ router.post('/tweets', function(request,response){
   var name = request.body.name;
   var text = request.body.text;
 
-  tweetBank.add(name,text);
+  var id = tweetBank.add(name,text);
+  console.log("POST BODY:",request.body,"id:",id);
   response.redirect('/');
 });
 

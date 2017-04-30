@@ -19,10 +19,6 @@ app.use(function(request,response,next){
 
 app.use( bodyParser.urlencoded({extended: false}) );
 app.use( bodyParser.json());
-app.use( function(request,response,next){
-  console.log("POST BODY: ",request.body);
-  next();
-});
 
 // routes
 const routes = require('./routes');
